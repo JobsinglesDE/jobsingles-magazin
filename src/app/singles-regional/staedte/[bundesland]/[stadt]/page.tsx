@@ -11,6 +11,7 @@ import { ProfileFeed } from '@/components/staedte/ProfileFeed';
 import { CityGeoLinks } from '@/components/staedte/CityGeoLinks';
 import { CityStats } from '@/components/staedte/CityStats';
 import { CitySearchBox } from '@/components/staedte/CitySearchBox';
+import { WhyJobsingles } from '@/components/staedte/WhyJobsingles';
 import { CityFooterLinks } from '@/components/staedte/CityFooterLinks';
 
 const BASE_URL = 'https://jobsingles.de/magazin';
@@ -99,6 +100,12 @@ export default async function StadtPage({ params }: { params: Params }) {
           </p>
         </header>
 
+        {/* Zensus-Datenblock — direkt unter dem Hero (unser Vorsprung vs. meinestadt) */}
+        <CityStats name={name} e={e} />
+
+        {/* Warum Jobsingles — 3 USPs (statt Konkurrenz-Logos) */}
+        <WhyJobsingles stadtName={name} />
+
         {/* Starte direkt mit deiner Suche */}
         <CitySearchBox stadtName={name} cityBase={cityBase} />
 
@@ -113,9 +120,6 @@ export default async function StadtPage({ params }: { params: Params }) {
         </div>
 
         <ProfileFeed stadtName={name} gender="m" heading={`Zum Verlieben: Single-Männer aus ${name}`} count={8} />
-
-        {/* Zensus-Datenblock — unser Vorsprung vs. meinestadt */}
-        <CityStats name={name} e={e} />
 
         {e.content && (
           <div className="prose-jobsingles my-8">

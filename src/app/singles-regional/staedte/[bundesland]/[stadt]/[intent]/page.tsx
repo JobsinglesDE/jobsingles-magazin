@@ -97,9 +97,9 @@ export default async function IntentPage({ params }: { params: Params }) {
           <p className="mt-3 text-foreground/70 max-w-2xl">{intentDef.intro(name)}</p>
         </header>
 
-        <ProfileFeed stadtName={name} intent={intentDef} />
-
         <CityStats name={name} e={e} />
+
+        <ProfileFeed stadtName={name} intent={intentDef} />
 
         <CityGeoLinks bundesland={bundesland} kreis={e.kreis || undefined} />
 
