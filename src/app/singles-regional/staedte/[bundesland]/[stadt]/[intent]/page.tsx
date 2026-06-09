@@ -7,6 +7,7 @@ import { BUNDESLAENDER, bundeslandName } from '@/lib/bundeslaender';
 import { CityIntentNav } from '@/components/staedte/CityIntentNav';
 import { ProfileFeed } from '@/components/staedte/ProfileFeed';
 import { CityGeoLinks } from '@/components/staedte/CityGeoLinks';
+import { CityStats } from '@/components/staedte/CityStats';
 import { INTENT_SLUGS, getIntent } from '@/lib/intents';
 
 const BASE_URL = 'https://jobsingles.de/magazin';
@@ -96,6 +97,8 @@ export default async function IntentPage({ params }: { params: Params }) {
         </header>
 
         <ProfileFeed stadtName={name} intent={intentDef} />
+
+        <CityStats name={name} e={e} />
 
         <CityGeoLinks bundesland={bundesland} kreis={e.kreis || undefined} />
       </div>

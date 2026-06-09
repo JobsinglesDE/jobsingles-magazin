@@ -9,6 +9,7 @@ import { BUNDESLAENDER, bundeslandName } from '@/lib/bundeslaender';
 import { CityIntentNav } from '@/components/staedte/CityIntentNav';
 import { ProfileFeed } from '@/components/staedte/ProfileFeed';
 import { CityGeoLinks } from '@/components/staedte/CityGeoLinks';
+import { CityStats } from '@/components/staedte/CityStats';
 
 const BASE_URL = 'https://jobsingles.de/magazin';
 type Params = Promise<{ bundesland: string; stadt: string }>;
@@ -94,35 +95,13 @@ export default async function StadtPage({ params }: { params: Params }) {
           <p className="mt-3 text-foreground/70 max-w-2xl">
             {e.intro || `Lerne Singles aus ${name} kennen — Partnersuche, Dating und Bekanntschaften in deiner Region.`}
           </p>
-          {e.ledigeAnzahl && (
-            <div className="mt-5">
-              <div className="inline-flex items-baseline gap-2 rounded-xl bg-primary/10 px-4 py-2">
-                <span className="text-2xl font-extrabold text-primary">{e.ledigeAnzahl}</span>
-                <span className="text-sm text-foreground/60">Ledige in {name}</span>
-              </div>
-              <p className="mt-1 text-[11px] text-foreground/40">
-                Hochrechnung auf Basis der Ledigen-Quote im {e.kreis || 'Landkreis'} (43,2 %, Zensus 2022).
-              </p>
-            </div>
-          )}
         </header>
 
         {/* Profil-Ausspielung (Platzhalter → später ICONY-Feed) */}
         <ProfileFeed stadtName={name} />
 
         {/* Zensus-Datenblock — unser Vorsprung vs. meinestadt */}
-        {(e.einwohner || e.ledigeAnzahl || e.altersstruktur || e.geschlechterquote) && (
-          <section className="my-10">
-            <h2 className="text-xl font-bold mb-3">Singles in {name}: Zahlen & Fakten</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {e.einwohner && <Stat label="Einwohner (Stadt)" value={e.einwohner} />}
-              {e.ledigeAnzahl && <Stat label="ledig (gesch.)" value={e.ledigeAnzahl} />}
-              {e.altersstruktur && <Stat label="Ø Alter (Landkreis)" value={e.altersstruktur} />}
-              {e.geschlechterquote && <Stat label="Geschlecht (Landkreis)" value={e.geschlechterquote} />}
-            </div>
-            <p className="mt-2 text-[11px] text-foreground/40">Quelle: {e.stichtag || 'Zensus 2022'}, Statistisches Bundesamt.</p>
-          </section>
-        )}
+        <CityStats name={name} e={e} />
 
         {e.content && (
           <div className="prose-jobsingles my-8">
@@ -145,14 +124,5 @@ export default async function StadtPage({ params }: { params: Params }) {
         <HeartButton href="https://jobsingles.de/?AID=JobsinglesMagazin">Jetzt kostenfrei mitmachen</HeartButton>
       </section>
     </>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-lg bg-surface border border-foreground/10 p-3">
-      <div className="text-base font-bold text-foreground">{value}</div>
-      <div className="text-[11px] uppercase tracking-wide text-foreground/40">{label}</div>
-    </div>
   );
 }
