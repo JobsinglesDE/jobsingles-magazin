@@ -10,6 +10,8 @@ import { CityIntentNav } from '@/components/staedte/CityIntentNav';
 import { ProfileFeed } from '@/components/staedte/ProfileFeed';
 import { CityGeoLinks } from '@/components/staedte/CityGeoLinks';
 import { CityStats } from '@/components/staedte/CityStats';
+import { CitySearchBox } from '@/components/staedte/CitySearchBox';
+import { CityFooterLinks } from '@/components/staedte/CityFooterLinks';
 
 const BASE_URL = 'https://jobsingles.de/magazin';
 type Params = Promise<{ bundesland: string; stadt: string }>;
@@ -97,8 +99,20 @@ export default async function StadtPage({ params }: { params: Params }) {
           </p>
         </header>
 
-        {/* Profil-Ausspielung (Platzhalter → später ICONY-Feed) */}
-        <ProfileFeed stadtName={name} />
+        {/* Starte direkt mit deiner Suche */}
+        <CitySearchBox stadtName={name} cityBase={cityBase} />
+
+        {/* Profil-Ausspielung gesplittet (Platzhalter → später ICONY-Feed) */}
+        <ProfileFeed stadtName={name} gender="f" heading={`Zum Verlieben: Single-Frauen aus ${name}`} count={8} />
+
+        {/* Element dazwischen — Register-CTA-Strip */}
+        <div className="my-6 rounded-2xl bg-primary px-6 py-5 text-center text-on-primary">
+          <p className="font-bold text-lg">Wen möchtest du in {name} kennenlernen?</p>
+          <p className="text-on-primary/80 text-sm mt-1 mb-3">Kostenlos anmelden und sofort losflirten.</p>
+          <HeartButton href="https://jobsingles.de/registration/?AID=JobsinglesMagazin">Jetzt kostenlos registrieren</HeartButton>
+        </div>
+
+        <ProfileFeed stadtName={name} gender="m" heading={`Zum Verlieben: Single-Männer aus ${name}`} count={8} />
 
         {/* Zensus-Datenblock — unser Vorsprung vs. meinestadt */}
         <CityStats name={name} e={e} />
@@ -117,6 +131,8 @@ export default async function StadtPage({ params }: { params: Params }) {
         )}
 
         <CityGeoLinks bundesland={bundesland} kreis={e.kreis || undefined} />
+
+        <CityFooterLinks name={name} kreis={e.kreis || undefined} currentStadt={stadt} cityBase={cityBase} />
       </div>
 
       <section className="text-center py-14 px-6">

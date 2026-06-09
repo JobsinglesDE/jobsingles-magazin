@@ -8,6 +8,7 @@ import { CityIntentNav } from '@/components/staedte/CityIntentNav';
 import { ProfileFeed } from '@/components/staedte/ProfileFeed';
 import { CityGeoLinks } from '@/components/staedte/CityGeoLinks';
 import { CityStats } from '@/components/staedte/CityStats';
+import { CityFooterLinks } from '@/components/staedte/CityFooterLinks';
 import { INTENT_SLUGS, getIntent } from '@/lib/intents';
 
 const BASE_URL = 'https://jobsingles.de/magazin';
@@ -101,6 +102,8 @@ export default async function IntentPage({ params }: { params: Params }) {
         <CityStats name={name} e={e} />
 
         <CityGeoLinks bundesland={bundesland} kreis={e.kreis || undefined} />
+
+        <CityFooterLinks name={name} kreis={e.kreis || undefined} currentStadt={stadt} cityBase={cityBase} />
       </div>
 
       <section className="text-center py-14 px-6">

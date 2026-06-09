@@ -24,15 +24,19 @@ function hashStr(s: string): number {
 export function ProfileFeed({
   stadtName,
   intent,
+  gender,
+  heading,
   count = 12,
 }: {
   stadtName: string;
   intent?: Intent;
+  gender?: 'm' | 'f';
+  heading?: string;
   count?: number;
 }) {
-  const seed = hashStr(stadtName + (intent?.slug ?? 'main'));
-  // Geschlechter-Mix aus Intent ableiten (Default gemischt)
-  const showGender = intent?.feed.gender; // 'm' | 'f' | undefined
+  const seed = hashStr(stadtName + (gender ?? intent?.slug ?? 'main'));
+  // Geschlecht: expliziter gender-Prop > Intent-Filter > gemischt
+  const showGender = gender ?? intent?.feed.gender; // 'm' | 'f' | undefined
   const minAge = intent?.feed.minAge ?? 23;
 
   const profiles = Array.from({ length: count }).map((_, i) => {
@@ -48,7 +52,7 @@ export function ProfileFeed({
     <section aria-label={`Singles aus ${stadtName}`} className="my-10">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-bold text-foreground">
-          {intent ? intent.h1(stadtName) : `Singles aus ${stadtName}`}
+          {heading ?? (intent ? intent.h1(stadtName) : `Singles aus ${stadtName}`)}
         </h2>
         <span className="text-[11px] uppercase tracking-wide text-foreground/40 border border-foreground/15 rounded px-2 py-0.5">
           Vorschau
