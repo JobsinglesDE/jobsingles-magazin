@@ -95,9 +95,14 @@ export default async function StadtPage({ params }: { params: Params }) {
             {e.intro || `Lerne Singles aus ${name} kennen — Partnersuche, Dating und Bekanntschaften in deiner Region.`}
           </p>
           {e.ledigeAnzahl && (
-            <div className="mt-5 inline-flex items-baseline gap-2 rounded-xl bg-primary/10 px-4 py-2">
-              <span className="text-2xl font-extrabold text-primary">{e.ledigeAnzahl}</span>
-              <span className="text-sm text-foreground/60">Ledige in {name} (Zensus 2022)</span>
+            <div className="mt-5">
+              <div className="inline-flex items-baseline gap-2 rounded-xl bg-primary/10 px-4 py-2">
+                <span className="text-2xl font-extrabold text-primary">{e.ledigeAnzahl}</span>
+                <span className="text-sm text-foreground/60">Ledige in {name}</span>
+              </div>
+              <p className="mt-1 text-[11px] text-foreground/40">
+                Hochrechnung auf Basis der Ledigen-Quote im {e.kreis || 'Landkreis'} (43,2 %, Zensus 2022).
+              </p>
             </div>
           )}
         </header>
@@ -110,10 +115,10 @@ export default async function StadtPage({ params }: { params: Params }) {
           <section className="my-10">
             <h2 className="text-xl font-bold mb-3">Singles in {name}: Zahlen & Fakten</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {e.einwohner && <Stat label="Einwohner" value={e.einwohner} />}
-              {e.ledigeAnzahl && <Stat label="davon ledig" value={e.ledigeAnzahl} />}
-              {e.altersstruktur && <Stat label="Altersstruktur" value={e.altersstruktur} />}
-              {e.geschlechterquote && <Stat label="Geschlechterverhältnis" value={e.geschlechterquote} />}
+              {e.einwohner && <Stat label="Einwohner (Stadt)" value={e.einwohner} />}
+              {e.ledigeAnzahl && <Stat label="ledig (gesch.)" value={e.ledigeAnzahl} />}
+              {e.altersstruktur && <Stat label="Ø Alter (Landkreis)" value={e.altersstruktur} />}
+              {e.geschlechterquote && <Stat label="Geschlecht (Landkreis)" value={e.geschlechterquote} />}
             </div>
             <p className="mt-2 text-[11px] text-foreground/40">Quelle: {e.stichtag || 'Zensus 2022'}, Statistisches Bundesamt.</p>
           </section>
