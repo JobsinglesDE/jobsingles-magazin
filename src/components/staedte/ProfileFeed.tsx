@@ -97,16 +97,6 @@ export function ProfileFeed({
         ))}
       </div>
 
-      {/* Blur-Register-Hinweis (Conversion-Mechanik wie meinestadt) */}
-      <div className="mt-5 rounded-xl border border-primary/30 bg-primary/5 p-4 text-center text-sm text-foreground/70">
-        Du willst jemanden aus {stadtName} kennenlernen?{' '}
-        <a href={REGISTER_URL} rel="nofollow noopener" target="_blank" className="font-semibold text-primary underline">
-          Jetzt kostenlos registrieren
-        </a>
-        <p className="mt-1 text-[11px] text-foreground/40">
-          Vorschau-Darstellung. Echte Mitglieder-Profile aus {stadtName} erscheinen nach Freischaltung der Profil-Schnittstelle.
-        </p>
-      </div>
     </section>
   );
 }
