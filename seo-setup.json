@@ -1,0 +1,27 @@
+{
+  "site": "jobsingles.de",
+  "magazinPath": "/magazin",
+  "organization": {
+    "name": "Jobsingles.de",
+    "url": "https://jobsingles.de",
+    "logo": "https://jobsingles.de/magazin/logos/jobsingles-logo.png"
+  },
+  "authors": [
+    {
+      "name": "Tommy Honold",
+      "slug": "tommy-honold",
+      "role": "Chefredakteur",
+      "bio": "Gründer des Jobsingles Dating Networks. Bringt Singles der Berufe zusammen.",
+      "sameAs": []
+    }
+  ],
+  "breadcrumb": ["Home", "Magazin", "{category}", "{article}"],
+  "defaultImage": "/images/og-default.webp",
+  "hreflang": { "de-DE": "https://jobsingles.de/magazin" },
+  "schemas": ["BlogPosting", "FAQPage", "BreadcrumbList", "Organization"],
+  "robots": {
+    "index": true,
+    "follow": true,
+    "sitemap": "/magazin/sitemap.xml"
+  }
+}

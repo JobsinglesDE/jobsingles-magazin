@@ -1,0 +1,21 @@
+{
+  "redirects": [],
+  "rewrites": [
+    {
+      "source": "/magazin/llms.txt",
+      "destination": "/magazin/llms-txt"
+    },
+    {
+      "source": "/magazin/wp-json/wp/v2/posts/",
+      "destination": "/magazin/wp-json/wp/v2/posts"
+    },
+    {
+      "source": "/api/keystatic/:path*",
+      "destination": "/magazin/api/keystatic/:path*"
+    },
+    {
+      "source": "/keystatic/:path*",
+      "destination": "/magazin/keystatic/:path*"
+    }
+  ]
+}
