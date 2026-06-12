@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { reader } from '@/lib/keystatic';
-import { INTENTS } from '@/lib/intents';
+import { TAB_INTENTS, FOOTER_INTENTS } from '@/lib/intents';
 import { kreisSlug } from '@/components/staedte/CityGeoLinks';
 
 /**
@@ -43,7 +43,7 @@ export async function CityFooterLinks({
 
   return (
     <section className="mt-16 border-t border-foreground/10 pt-10">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-sm">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm">
         {/* Umgebung */}
         {siblings.length > 0 && (
           <div>
@@ -67,11 +67,25 @@ export async function CityFooterLinks({
           </div>
         )}
 
-        {/* Dating-Kategorien (Intents) */}
+        {/* Flirt-Portale (Tab-Intents) — wie meinestadt */}
         <div>
-          <h3 className="font-bold text-foreground mb-3">Dating in {name}</h3>
+          <h3 className="font-bold text-foreground mb-3">Flirt-Portale</h3>
           <ul className="space-y-2">
-            {INTENTS.map((i) => (
+            {TAB_INTENTS.map((i) => (
+              <li key={i.slug}>
+                <Link href={`${cityBase}/${i.slug}`} className="text-foreground/70 hover:text-primary">
+                  {i.menuLabel} {name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Partnervermittlung & Casual Dating (Footer-Intents) — wie meinestadt */}
+        <div>
+          <h3 className="font-bold text-foreground mb-3">Partnervermittlung &amp; Casual Dating</h3>
+          <ul className="space-y-2">
+            {FOOTER_INTENTS.map((i) => (
               <li key={i.slug}>
                 <Link href={`${cityBase}/${i.slug}`} className="text-foreground/70 hover:text-primary">
                   {i.menuLabel} in {name}

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { INTENTS } from '@/lib/intents';
+import { TAB_INTENTS } from '@/lib/intents';
 
 /**
  * Top-Menü pro Stadt — wie meinestadt.de. Auf JEDER Stadt-/Intent-Seite,
@@ -32,7 +32,7 @@ export function CityIntentNav({
             Singlebörse
           </Link>
         </li>
-        {INTENTS.map((i) => {
+        {TAB_INTENTS.map((i) => {
           const active = i.slug === activeSlug;
           return (
             <li key={i.slug}>

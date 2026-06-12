@@ -2,13 +2,15 @@ import { notFound } from 'next/navigation';
 import { reader } from '@/lib/keystatic';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { JsonLd, articleJsonLd, breadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { JsonLd, articleJsonLd, breadcrumbJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
 import { BUNDESLAENDER, bundeslandName } from '@/lib/bundeslaender';
 import { CityIntentNav } from '@/components/staedte/CityIntentNav';
 import { ProfileFeed } from '@/components/staedte/ProfileFeed';
 import { CityGeoLinks } from '@/components/staedte/CityGeoLinks';
 import { CityStats } from '@/components/staedte/CityStats';
 import { CityFooterLinks } from '@/components/staedte/CityFooterLinks';
+import { PartnerRecommendation } from '@/components/staedte/PartnerRecommendation';
+import { FAQAccordion } from '@/components/ui/FAQAccordion';
 import { INTENT_SLUGS, getIntent } from '@/lib/intents';
 
 const BASE_URL = 'https://jobsingles.de/magazin';
@@ -20,7 +22,7 @@ export const dynamicParams = true;
 export async function generateStaticParams() {
   const all = await reader.collections.staedte.all();
   const cities = all.filter((a) => a.entry.status === 'published');
-  // jede Stadt × 7 Intents
+  // jede Stadt × Intents (aktuell 3)
   return cities.flatMap((a) =>
     INTENT_SLUGS.map((intent) => ({ bundesland: a.entry.bundesland, stadt: a.entry.stadt, intent }))
   );
@@ -69,9 +71,12 @@ export default async function IntentPage({ params }: { params: Params }) {
   const cityBase = `/singles-regional/staedte/${bundesland}/${stadt}`;
   const url = `${BASE_URL}${cityBase}/${intent}`;
 
+  const faqItems = intentDef.faq(name);
+
   return (
     <>
       <JsonLd data={articleJsonLd({ title: intentDef.h1(name), description: intentDef.intro(name), url })} />
+      <JsonLd data={faqJsonLd(faqItems)} />
       <JsonLd data={breadcrumbJsonLd([
         { name: 'Magazin', url: BASE_URL },
         { name: 'Singles Regional', url: `${BASE_URL}/singles-regional` },
@@ -97,9 +102,16 @@ export default async function IntentPage({ params }: { params: Params }) {
           <p className="mt-3 text-foreground/70 max-w-2xl">{intentDef.intro(name)}</p>
         </header>
 
+        <PartnerRecommendation partnerKey={intentDef.partner} stadtName={name} intentLabel={intentDef.menuLabel} />
+
         <CityStats name={name} e={e} />
 
-        <ProfileFeed stadtName={name} intent={intentDef} />
+        <ProfileFeed stadtName={name} kreis={e.kreis || undefined} bundesland={bundesland} intent={intentDef} />
+
+        <section className="my-12">
+          <h2 className="text-2xl font-bold mb-6">Häufige Fragen: {intentDef.menuLabel} in {name}</h2>
+          <FAQAccordion items={faqItems} />
+        </section>
 
         <CityGeoLinks bundesland={bundesland} kreis={e.kreis || undefined} />
 

@@ -1,58 +1,42 @@
 import type { Intent } from '@/lib/intents';
-
-const REGISTER_URL = 'https://jobsingles.de/registration/?AID=JobsinglesMagazin';
-
-// Deterministische Mock-Profile (kein Math.random — stabil pro Stadt/Intent).
-const FEMALE = ['Sandra', 'Nicole', 'Petra', 'Andrea', 'Claudia', 'Melanie', 'Bianca', 'Sabine', 'Jana', 'Tanja', 'Kerstin', 'Anja'];
-const MALE = ['Markus', 'Stefan', 'Andreas', 'Thomas', 'Michael', 'Daniel', 'Frank', 'Jochen', 'Sven', 'Tobias', 'Dirk', 'Kai'];
-const HUES = [4, 200, 28, 280, 150, 330, 50, 190];
-
-function pick<T>(arr: T[], seed: number, i: number): T {
-  return arr[(seed + i * 7) % arr.length];
-}
-function hashStr(s: string): number {
-  let h = 0;
-  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
-  return h;
-}
+import { getProfiles } from '@/lib/feed';
+import { getPartner } from '@/lib/partners';
 
 /**
- * Profil-Ausspielung pro Stadt/Intent. AKTUELL: Platzhalter (Mock) im meinestadt-Layout.
- * SPÄTER: dieselbe Komponente, Datenquelle = ICONY-Schnittstelle (server-side, crawlbar).
- * Conversion: Klick auf Profil → Registrieren (rel=nofollow, wie meinestadt).
+ * Profil-Ausspielung pro Stadt/Intent. Datenquelle = Feed-Adapter (src/lib/feed.ts):
+ * aktuell Mock, nach dem ICONY-Termin echte Profile — Komponente bleibt gleich.
+ * Conversion: Klick auf Profil → Registrierung der für den Intent empfohlenen Börse
+ * (rel=nofollow, wie meinestadt). Berufs-Intents zeigen das Berufslabel auf der Karte —
+ * Teil der Uniqueness-Strategie (Profilset + sichtbares Attribut unterscheiden sich pro Intent).
  */
-export function ProfileFeed({
+export async function ProfileFeed({
   stadtName,
+  kreis,
+  bundesland,
   intent,
   gender,
   heading,
   count = 12,
 }: {
   stadtName: string;
+  kreis?: string | null;
+  bundesland?: string;
   intent?: Intent;
   gender?: 'm' | 'f';
   heading?: string;
   count?: number;
 }) {
-  const seed = hashStr(stadtName + (gender ?? intent?.slug ?? 'main'));
-  // Geschlecht: expliziter gender-Prop > Intent-Filter > gemischt
-  const showGender = gender ?? intent?.feed.gender; // 'm' | 'f' | undefined
-  const minAge = intent?.feed.minAge ?? 23;
-
-  const profiles = Array.from({ length: count }).map((_, i) => {
-    const female = showGender ? showGender === 'f' : (seed + i) % 2 === 0;
-    const name = pick(female ? FEMALE : MALE, seed, i);
-    const age = minAge + ((seed + i * 13) % 22);
-    const dist = 1 + ((seed + i * 5) % 28);
-    const hue = HUES[(seed + i) % HUES.length];
-    return { name, age, dist, hue, female };
-  });
+  const { profiles, radiusLevel } = await getProfiles({ stadtName, kreis, bundesland, intent, gender, count });
+  const partner = getPartner(intent?.partner ?? 'jobsingles');
+  const registerUrl = partner.href;
+  const rel = partner.owner === 'chris' ? 'sponsored nofollow noopener' : 'nofollow noopener';
 
   return (
     <section aria-label={`Singles aus ${stadtName}`} className="my-10">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-xl font-bold text-foreground">
           {heading ?? (intent ? intent.h1(stadtName) : `Singles aus ${stadtName}`)}
+          {radiusLevel !== 'stadt' && ' und Umgebung'}
         </h2>
         <span className="text-[11px] uppercase tracking-wide text-foreground/40 border border-foreground/15 rounded px-2 py-0.5">
           Vorschau
@@ -63,8 +47,8 @@ export function ProfileFeed({
         {profiles.map((p, i) => (
           <a
             key={i}
-            href={REGISTER_URL}
-            rel="nofollow noopener"
+            href={registerUrl}
+            rel={rel}
             target="_blank"
             className="group block rounded-xl overflow-hidden bg-surface border border-foreground/10 hover:border-primary/50 transition-colors"
           >
@@ -85,7 +69,10 @@ export function ProfileFeed({
                 <div className="text-sm font-semibold leading-tight">
                   {p.name}, {p.age}
                 </div>
-                <div className="text-[11px] text-white/80">{p.dist} km entfernt</div>
+                <div className="text-[11px] text-white/80">
+                  {p.beruf ? `${p.beruf} · ` : ''}
+                  {p.dist} km entfernt
+                </div>
               </div>
             </div>
             <div className="p-2 text-center">
@@ -96,7 +83,6 @@ export function ProfileFeed({
           </a>
         ))}
       </div>
-
     </section>
   );
 }
