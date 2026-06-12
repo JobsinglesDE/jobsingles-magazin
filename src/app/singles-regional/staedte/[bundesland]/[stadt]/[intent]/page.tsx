@@ -14,6 +14,7 @@ import { CityFooterLinks } from '@/components/staedte/CityFooterLinks';
 import { PartnerRecommendation } from '@/components/staedte/PartnerRecommendation';
 import { CityBadgeHero } from '@/components/staedte/CityBadgeHero';
 import { CityDateSpots } from '@/components/staedte/CityDateSpots';
+import { PartnerCTA } from '@/components/staedte/PartnerCTA';
 import { FAQAccordion } from '@/components/ui/FAQAccordion';
 import { INTENT_SLUGS, getIntent } from '@/lib/intents';
 
@@ -137,6 +138,9 @@ export default async function IntentPage({ params }: { params: Params }) {
         )}
 
         <CityDateSpots stadtSlug={stadt} stadtName={name} intent={intentDef} />
+
+        {/* Conversion-CTA vor den FAQs (Tommy 2026-06-12) */}
+        <PartnerCTA partnerKey={intentDef.partner} stadtName={name} intentLabel={intentDef.menuLabel} />
 
         <section className="my-12">
           <h2 className="text-2xl font-bold mb-6">Häufige Fragen: {intentDef.menuLabel} in {name}</h2>

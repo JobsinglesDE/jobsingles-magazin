@@ -54,6 +54,11 @@ export function PartnerRecommendation({
         <div className="min-w-0 flex-1">
           <p className="font-bold text-foreground">{partner.name}</p>
           <p className="text-sm text-foreground/70">{partner.claim}</p>
+          <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs text-foreground/60">
+            <li className="flex items-center gap-1"><span className="text-primary font-bold">✓</span> Kostenlose Anmeldung</li>
+            <li className="flex items-center gap-1"><span className="text-primary font-bold">✓</span> Geprüfte Profile</li>
+            <li className="flex items-center gap-1"><span className="text-primary font-bold">✓</span> Mitglieder aus {stadtName} &amp; Umgebung</li>
+          </ul>
         </div>
         <a
           href={partner.href}
