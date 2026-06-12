@@ -1,0 +1,104 @@
+{
+  "stadt": "radolfzell-am-bodensee",
+  "name": "Radolfzell am Bodensee",
+  "source": "OpenStreetMap",
+  "count": 12,
+  "spots": [
+    {
+      "name": "S Bar",
+      "category": "Bar",
+      "amenity": "bar",
+      "address": "Marktplatz 6, 78315 Radolfzell am Bodensee",
+      "hasAddress": true,
+      "distanceKm": 0.03
+    },
+    {
+      "name": "Fernando",
+      "category": "Eiscafé",
+      "amenity": "ice_cream",
+      "address": "Seestraße 28, 78315 Radolfzell am Bodensee",
+      "hasAddress": true,
+      "distanceKm": 0.08
+    },
+    {
+      "name": "Omas Küche im Liesele",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Höllstraße 3, 78315 Radolfzell am Bodensee",
+      "hasAddress": true,
+      "distanceKm": 0.1
+    },
+    {
+      "name": "Vulcano",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Höllstraße 17/2, 78315 Radolfzell am Bodensee",
+      "hasAddress": true,
+      "distanceKm": 0.1
+    },
+    {
+      "name": "Levante",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Löwengasse 30, 78315 Radolfzell am Bodensee",
+      "hasAddress": true,
+      "distanceKm": 0.22
+    },
+    {
+      "name": "Indien Mirchi",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Bismarckstraße 2, 78315 Radolfzell am Bodensee",
+      "hasAddress": true,
+      "distanceKm": 0.24
+    },
+    {
+      "name": "Fino",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Sankt-Johannis-Straße 5, 78315 Radolfzell am Bodensee",
+      "hasAddress": true,
+      "distanceKm": 0.37
+    },
+    {
+      "name": "No Limit",
+      "category": "Kneipe",
+      "amenity": "pub",
+      "address": "Konstanzer Straße 11, 78315 Radolfzell am Bodensee",
+      "hasAddress": true,
+      "distanceKm": 0.39
+    },
+    {
+      "name": "Steg 11",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Karl-Wolf-Straße 11a, 78315 Radolfzell am Bodensee",
+      "hasAddress": true,
+      "distanceKm": 0.71
+    },
+    {
+      "name": "Tanke Haus am See",
+      "category": "Bar",
+      "amenity": "bar",
+      "address": "Karl-Wolf-Straße 23, 78315 Radolfzell am Bodensee",
+      "hasAddress": true,
+      "distanceKm": 0.99
+    },
+    {
+      "name": "La Oliva",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Karl-Wolf-Straße 6, 78315 Radolfzell am Bodensee",
+      "hasAddress": true,
+      "distanceKm": 1.02
+    },
+    {
+      "name": "Am Surfplatz",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Karl-Wolf-Straße 31, 78315 Radolfzell am Bodensee",
+      "hasAddress": true,
+      "distanceKm": 1.11
+    }
+  ]
+}

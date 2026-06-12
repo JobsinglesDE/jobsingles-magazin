@@ -1,0 +1,104 @@
+{
+  "stadt": "stockach",
+  "name": "Stockach",
+  "source": "OpenStreetMap",
+  "count": 12,
+  "spots": [
+    {
+      "name": "Ristorante Pizzeria Adler da Gigi",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Tuttlinger Straße 45, 78333 Stockach",
+      "hasAddress": true,
+      "distanceKm": 68.38
+    },
+    {
+      "name": "Pronto Pizza Presto",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Tuttlinger Straße 7, 78333 Stockach",
+      "hasAddress": true,
+      "distanceKm": 69
+    },
+    {
+      "name": "Santosida Kaffeerösterei",
+      "category": "Café",
+      "amenity": "cafe",
+      "address": "Hauptstraße 25, 78333 Stockach",
+      "hasAddress": true,
+      "distanceKm": 69.1
+    },
+    {
+      "name": "Nellenburger Talstation",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Nellenbadstraße 10, 78333 Stockach",
+      "hasAddress": true,
+      "distanceKm": 69.2
+    },
+    {
+      "name": "Mahlwerk",
+      "category": "Café",
+      "amenity": "cafe",
+      "address": "Hauptstraße 12, 78333 Stockach",
+      "hasAddress": true,
+      "distanceKm": 69.22
+    },
+    {
+      "name": "Eiscafé Venezia",
+      "category": "Eiscafé",
+      "amenity": "ice_cream",
+      "address": "Hauptstraße 7, 78333 Stockach",
+      "hasAddress": true,
+      "distanceKm": 69.24
+    },
+    {
+      "name": "Alt Stocken",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Kronengasse 4, 78333 Stockach",
+      "hasAddress": true,
+      "distanceKm": 69.28
+    },
+    {
+      "name": "Restaurant Helena",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Salmannsweilerstraße 8, 78333 Stockach",
+      "hasAddress": true,
+      "distanceKm": 69.33
+    },
+    {
+      "name": "Eisdiele Europa",
+      "category": "Café",
+      "amenity": "cafe",
+      "address": "Stadtwall 9A, 78333 Stockach",
+      "hasAddress": true,
+      "distanceKm": 69.42
+    },
+    {
+      "name": "Asia Wok",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Goethestraße 9, 78333 Stockach",
+      "hasAddress": true,
+      "distanceKm": 69.43
+    },
+    {
+      "name": "Restaurant Fortuna",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Bahnhofstraße 8, 78333 Stockach",
+      "hasAddress": true,
+      "distanceKm": 69.52
+    },
+    {
+      "name": "Ya Hala",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Bahnhofstraße 3, 78333 Stockach",
+      "hasAddress": true,
+      "distanceKm": 69.62
+    }
+  ]
+}

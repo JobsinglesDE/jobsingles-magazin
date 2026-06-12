@@ -1,0 +1,104 @@
+{
+  "stadt": "konstanz",
+  "name": "Konstanz",
+  "source": "OpenStreetMap",
+  "count": 12,
+  "spots": [
+    {
+      "name": "Umami",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Sigismundstraße 12, 78462 Konstanz",
+      "hasAddress": true,
+      "distanceKm": 0.03
+    },
+    {
+      "name": "Rosgarten-Café",
+      "category": "Café",
+      "amenity": "cafe",
+      "address": "Rosgartenstraße 13, 78462 Konstanz",
+      "hasAddress": true,
+      "distanceKm": 0.04
+    },
+    {
+      "name": "ess|bar",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Bahnhofstraße 15, 78462 Konstanz",
+      "hasAddress": true,
+      "distanceKm": 0.05
+    },
+    {
+      "name": "BOX To Go",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Obere Augustinergasse 2, 78462 Konstanz",
+      "hasAddress": true,
+      "distanceKm": 0.05
+    },
+    {
+      "name": "wabisabi",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Dammgasse 5, 78462",
+      "hasAddress": true,
+      "distanceKm": 0.07
+    },
+    {
+      "name": "Khibar",
+      "category": "Bar",
+      "amenity": "bar",
+      "address": "Bahnhofstraße 6, 78462 Konstanz",
+      "hasAddress": true,
+      "distanceKm": 0.08
+    },
+    {
+      "name": "SUPPENGRÜN",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Sigismundstraße 19",
+      "hasAddress": true,
+      "distanceKm": 0.09
+    },
+    {
+      "name": "SUPPENGRÜN soup & salad BAR",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Sigismundstraße 19, 78462 Konstanz",
+      "hasAddress": true,
+      "distanceKm": 0.1
+    },
+    {
+      "name": "Goia",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Augustinerplatz 7, 78462 Konstanz",
+      "hasAddress": true,
+      "distanceKm": 0.1
+    },
+    {
+      "name": "Casablanca",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Marktstätte 15, 78462 Konstanz",
+      "hasAddress": true,
+      "distanceKm": 0.11
+    },
+    {
+      "name": "Milk & Honey",
+      "category": "Café",
+      "amenity": "cafe",
+      "address": "Neugasse 13, 78462 Konstanz",
+      "hasAddress": true,
+      "distanceKm": 0.12
+    },
+    {
+      "name": "Brasserie Ignaz",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Bahnhofplatz 6, 78462 Konstanz",
+      "hasAddress": true,
+      "distanceKm": 0.12
+    }
+  ]
+}

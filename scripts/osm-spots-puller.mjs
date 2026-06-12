@@ -44,7 +44,11 @@ function haversineKm(a, b) {
 async function overpass(query) {
   const res = await fetch(OVERPASS, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      // Overpass liefert ohne UA 406
+      'User-Agent': 'jobsingles-spots/1.0 (kontakt@jobsingles.de)',
+    },
     body: 'data=' + encodeURIComponent(query),
   });
   if (!res.ok) throw new Error(`Overpass HTTP ${res.status}`);

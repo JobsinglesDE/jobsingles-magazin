@@ -10,6 +10,8 @@ import { CityIntentNav } from '@/components/staedte/CityIntentNav';
 import { ProfileFeed } from '@/components/staedte/ProfileFeed';
 import { CityGeoLinks } from '@/components/staedte/CityGeoLinks';
 import { CityStats } from '@/components/staedte/CityStats';
+import { CityBadgeHero } from '@/components/staedte/CityBadgeHero';
+import { CityDateSpots } from '@/components/staedte/CityDateSpots';
 import { CitySearchBox } from '@/components/staedte/CitySearchBox';
 import { WhyJobsingles } from '@/components/staedte/WhyJobsingles';
 import { CityFooterLinks } from '@/components/staedte/CityFooterLinks';
@@ -90,15 +92,14 @@ export default async function StadtPage({ params }: { params: Params }) {
           { label: name, href: cityBase },
         ]} />
 
-        {/* Hero */}
-        <header className="mt-6 mb-8">
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-foreground">
-            Singles in {name} und Umgebung
-          </h1>
-          <p className="mt-3 text-foreground/70 max-w-2xl">
-            {e.intro || `Lerne Singles aus ${name} kennen — Partnersuche, Dating und Bekanntschaften in deiner Region.`}
-          </p>
-        </header>
+        {/* Hero mit Stadt-Plakette (unser visueller Fingerabdruck, kein meinestadt-Look) */}
+        <CityBadgeHero
+          name={name}
+          kicker={`Singlebörse · ${blName}`}
+          h1={`Singles in ${name} und Umgebung`}
+          intro={e.intro || `Lerne Singles aus ${name} kennen — Partnersuche, Dating und Bekanntschaften in deiner Region.`}
+          ledige={e.ledigeAnzahl || undefined}
+        />
 
         {/* Zensus-Datenblock — direkt unter dem Hero (unser Vorsprung vs. meinestadt) */}
         <CityStats name={name} e={e} />
@@ -120,6 +121,9 @@ export default async function StadtPage({ params }: { params: Params }) {
         </div>
 
         <ProfileFeed stadtName={name} gender="m" heading={`Zum Verlieben: Single-Männer aus ${name}`} count={8} />
+
+        {/* Orte fürs erste Date (OpenStreetMap — unser Branchenbuch-Pendant) */}
+        <CityDateSpots stadtSlug={stadt} stadtName={name} />
 
         {e.content && (
           <div className="prose-jobsingles my-8">

@@ -1,0 +1,104 @@
+{
+  "stadt": "engen",
+  "name": "Engen",
+  "source": "OpenStreetMap",
+  "count": 12,
+  "spots": [
+    {
+      "name": "Kreuz",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Eichenbergstraße 3, 78234 Engen",
+      "hasAddress": true,
+      "distanceKm": 4.59
+    },
+    {
+      "name": "Gasthaus Ritter",
+      "category": "Kneipe",
+      "amenity": "pub",
+      "address": "",
+      "hasAddress": false,
+      "distanceKm": 0.07
+    },
+    {
+      "name": "Cafe e. m. am Marktplatz",
+      "category": "Café",
+      "amenity": "cafe",
+      "address": "",
+      "hasAddress": false,
+      "distanceKm": 0.1
+    },
+    {
+      "name": "Upstairs Bar",
+      "category": "Bar",
+      "amenity": "bar",
+      "address": "",
+      "hasAddress": false,
+      "distanceKm": 0.1
+    },
+    {
+      "name": "Schneckenburger",
+      "category": "Café",
+      "amenity": "cafe",
+      "address": "",
+      "hasAddress": false,
+      "distanceKm": 0.23
+    },
+    {
+      "name": "Eiscafe Danubio",
+      "category": "Café",
+      "amenity": "cafe",
+      "address": "",
+      "hasAddress": false,
+      "distanceKm": 0.29
+    },
+    {
+      "name": "C-Lounge",
+      "category": "Bar",
+      "amenity": "bar",
+      "address": "",
+      "hasAddress": false,
+      "distanceKm": 0.3
+    },
+    {
+      "name": "Schneckenburger",
+      "category": "Café",
+      "amenity": "cafe",
+      "address": "",
+      "hasAddress": false,
+      "distanceKm": 0.38
+    },
+    {
+      "name": "Zum Bahnhof",
+      "category": "Kneipe",
+      "amenity": "pub",
+      "address": "",
+      "hasAddress": false,
+      "distanceKm": 0.39
+    },
+    {
+      "name": "No Limit",
+      "category": "Kneipe",
+      "amenity": "pub",
+      "address": "",
+      "hasAddress": false,
+      "distanceKm": 0.48
+    },
+    {
+      "name": "Gebhart Vinothek",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "",
+      "hasAddress": false,
+      "distanceKm": 0.58
+    },
+    {
+      "name": "Rastanlage Hegau West",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "",
+      "hasAddress": false,
+      "distanceKm": 1.42
+    }
+  ]
+}

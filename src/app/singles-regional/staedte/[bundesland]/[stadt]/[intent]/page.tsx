@@ -12,6 +12,8 @@ import { CityGeoLinks } from '@/components/staedte/CityGeoLinks';
 import { CityStats } from '@/components/staedte/CityStats';
 import { CityFooterLinks } from '@/components/staedte/CityFooterLinks';
 import { PartnerRecommendation } from '@/components/staedte/PartnerRecommendation';
+import { CityBadgeHero } from '@/components/staedte/CityBadgeHero';
+import { CityDateSpots } from '@/components/staedte/CityDateSpots';
 import { FAQAccordion } from '@/components/ui/FAQAccordion';
 import { INTENT_SLUGS, getIntent } from '@/lib/intents';
 
@@ -99,10 +101,13 @@ export default async function IntentPage({ params }: { params: Params }) {
           { label: intentDef.menuLabel, href: `${cityBase}/${intent}` },
         ]} />
 
-        <header className="mt-6 mb-6">
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-foreground">{intentDef.h1(name)}</h1>
-          <p className="mt-3 text-foreground/70 max-w-2xl">{intentDef.intro(name)}</p>
-        </header>
+        <CityBadgeHero
+          name={name}
+          kicker={`${intentDef.menuLabel} · ${blName}`}
+          h1={intentDef.h1(name)}
+          intro={intentDef.intro(name)}
+          ledige={e.ledigeAnzahl || undefined}
+        />
 
         <PartnerRecommendation partnerKey={intentDef.partner} stadtName={name} intentLabel={intentDef.menuLabel} />
 
@@ -130,6 +135,8 @@ export default async function IntentPage({ params }: { params: Params }) {
             );
           })()
         )}
+
+        <CityDateSpots stadtSlug={stadt} stadtName={name} intent={intentDef} />
 
         <section className="my-12">
           <h2 className="text-2xl font-bold mb-6">Häufige Fragen: {intentDef.menuLabel} in {name}</h2>

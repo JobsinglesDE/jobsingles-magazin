@@ -1,0 +1,104 @@
+{
+  "stadt": "singen-hohentwiel",
+  "name": "Singen (Hohentwiel)",
+  "source": "OpenStreetMap",
+  "count": 12,
+  "spots": [
+    {
+      "name": "Am Stadtgarten",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Lindenstraße 31, 78224 Singen (Hohentwiel)",
+      "hasAddress": true,
+      "distanceKm": 0.15
+    },
+    {
+      "name": "Bosporus",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Erzbergerstraße 13, 78224 Singen (Hohentwiel)",
+      "hasAddress": true,
+      "distanceKm": 0.19
+    },
+    {
+      "name": "Eismanufaktur by Calo",
+      "category": "Eiscafé",
+      "amenity": "ice_cream",
+      "address": "Erzbergerstraße 5b",
+      "hasAddress": true,
+      "distanceKm": 0.24
+    },
+    {
+      "name": "Café Mocca",
+      "category": "Café",
+      "amenity": "cafe",
+      "address": "August-Ruf-Straße 11, 78224 Singen (Hohentwiel)",
+      "hasAddress": true,
+      "distanceKm": 0.29
+    },
+    {
+      "name": "China Resturant Jasmin Singen",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Erzbergerstraße 1a, 78224 Singen (Hohentwiel)",
+      "hasAddress": true,
+      "distanceKm": 0.39
+    },
+    {
+      "name": "Restaurant Poseidon",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Ekkehardstraße 30a, 78224 Singen (Hohentwiel)",
+      "hasAddress": true,
+      "distanceKm": 0.39
+    },
+    {
+      "name": "Rüd’s Coffeebar",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Hegaustraße 23, 78224 Singen (Hohentwiel)",
+      "hasAddress": true,
+      "distanceKm": 0.44
+    },
+    {
+      "name": "Oishii Sushi & Grill",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Bahnhofstraße 15, 78224 Singen (Hohentwiel)",
+      "hasAddress": true,
+      "distanceKm": 0.46
+    },
+    {
+      "name": "Afro",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Schwarzwaldstraße 26, 78224 Singen (Hohentwiel)",
+      "hasAddress": true,
+      "distanceKm": 0.48
+    },
+    {
+      "name": "PARK 1",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Parkstraße 3, 78224 Singen (Hohentwiel)",
+      "hasAddress": true,
+      "distanceKm": 0.53
+    },
+    {
+      "name": "Bombay Delight",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Freiheitstraße 40, 78224 Singen (Hohentwiel)",
+      "hasAddress": true,
+      "distanceKm": 0.55
+    },
+    {
+      "name": "Hotel Widerhold",
+      "category": "Restaurant",
+      "amenity": "restaurant",
+      "address": "Schaffhauser Straße 58, 78224 Singen (Hohentwiel)",
+      "hasAddress": true,
+      "distanceKm": 0.72
+    }
+  ]
+}
