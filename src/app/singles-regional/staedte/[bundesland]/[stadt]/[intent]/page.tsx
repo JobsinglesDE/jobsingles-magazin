@@ -6,6 +6,8 @@ import { JsonLd, articleJsonLd, breadcrumbJsonLd, faqJsonLd } from '@/components
 import { BUNDESLAENDER, bundeslandName } from '@/lib/bundeslaender';
 import { CityIntentNav } from '@/components/staedte/CityIntentNav';
 import { ProfileFeed } from '@/components/staedte/ProfileFeed';
+import { ProfileFeedLazy } from '@/components/staedte/ProfileFeedLazy';
+import { getPartner } from '@/lib/partners';
 import { CityGeoLinks } from '@/components/staedte/CityGeoLinks';
 import { CityStats } from '@/components/staedte/CityStats';
 import { CityFooterLinks } from '@/components/staedte/CityFooterLinks';
@@ -106,7 +108,28 @@ export default async function IntentPage({ params }: { params: Params }) {
 
         <CityStats name={name} e={e} />
 
-        <ProfileFeed stadtName={name} kreis={e.kreis || undefined} bundesland={bundesland} intent={intentDef} />
+        {intentDef.feed.beruf ? (
+          /* Beruf-Filter = disjunktes Profilset → serverseitig (SEO-Asset) */
+          <ProfileFeed stadtName={name} kreis={e.kreis || undefined} bundesland={bundesland} intent={intentDef} />
+        ) : (
+          /* Geteilter ICONY-Pool (auch bei meinestadt) → client-only, kein Profil-Content im HTML */
+          (() => {
+            const p = getPartner(intentDef.partner);
+            return (
+              <ProfileFeedLazy
+                stadtName={name}
+                intentSlug={intentDef.slug}
+                heading={intentDef.h1(name)}
+                gender={intentDef.feed.gender}
+                seeking={intentDef.feed.seeking}
+                minAge={intentDef.feed.minAge}
+                maxAge={intentDef.feed.maxAge}
+                registerUrl={p.href}
+                rel={p.owner === 'chris' ? 'sponsored nofollow noopener' : 'nofollow noopener'}
+              />
+            );
+          })()
+        )}
 
         <section className="my-12">
           <h2 className="text-2xl font-bold mb-6">Häufige Fragen: {intentDef.menuLabel} in {name}</h2>
