@@ -37,7 +37,7 @@ export function PartnerCTA({
         href={partner.href}
         rel={rel}
         target="_blank"
-        className="relative inline-block rounded-full bg-surface px-7 py-3 text-sm font-bold text-primary hover:opacity-90 transition-opacity"
+        className="relative inline-block rounded-full bg-[#429A45] px-7 py-3 text-sm font-bold text-white hover:opacity-90 transition-opacity shadow-md"
       >
         Jetzt kostenlos bei {partner.name} anmelden ❤
       </a>

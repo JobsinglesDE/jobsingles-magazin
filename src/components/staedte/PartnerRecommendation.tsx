@@ -64,7 +64,7 @@ export function PartnerRecommendation({
           href={partner.href}
           rel={rel}
           target="_blank"
-          className="inline-block rounded-full bg-primary px-6 py-3 text-sm font-bold text-on-primary hover:opacity-90 transition-opacity whitespace-nowrap self-start sm:self-center"
+          className="inline-block rounded-full bg-[#429A45] px-6 py-3 text-sm font-bold text-white hover:opacity-90 transition-opacity whitespace-nowrap self-start sm:self-center shadow-sm"
         >
           Jetzt kostenlos anmelden
         </a>
