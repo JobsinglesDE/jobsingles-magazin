@@ -5,7 +5,7 @@ import { ArticleCard } from '@/components/content/ArticleCard';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { JsonLd, collectionPageJsonLd, breadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { JsonLd, collectionPageJsonLd } from '@/components/seo/JsonLd';
 import { BUNDESLAENDER, BUNDESLAND_SLUGS, bundeslandName, bundeslandEmoji } from '@/lib/bundeslaender';
 
 export async function generateStaticParams() {
@@ -48,15 +48,6 @@ export default async function StadtBundeslandPage({ params }: { params: Promise<
           })),
         })}
       />
-      <JsonLd
-        data={breadcrumbJsonLd([
-          { name: 'Magazin', url: 'https://jobsingles.de/magazin' },
-          { name: 'Singles Regional', url: 'https://jobsingles.de/magazin/singles-regional' },
-          { name: 'Städte', url: 'https://jobsingles.de/magazin/singles-regional/staedte' },
-          { name: blName, url },
-        ])}
-      />
-
       <section className="relative overflow-hidden min-h-[280px] md:min-h-[360px] flex items-center">
         <div className="absolute inset-0 bg-gradient-to-br from-medical-teal/40 via-surface-dark to-background" />
         <div className="relative max-w-4xl mx-auto px-6 text-center">

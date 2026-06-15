@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { reader } from '@/lib/keystatic';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { JsonLd, articleJsonLd, breadcrumbJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
+import { JsonLd, webPageJsonLd, faqJsonLd } from '@/components/seo/JsonLd';
 import { BUNDESLAENDER, bundeslandName } from '@/lib/bundeslaender';
 import { CityIntentNav } from '@/components/staedte/CityIntentNav';
 import { ProfileFeed } from '@/components/staedte/ProfileFeed';
@@ -82,16 +82,15 @@ export default async function IntentPage({ params }: { params: Params }) {
 
   return (
     <>
-      <JsonLd data={articleJsonLd({ title: intentDef.h1(name), description: intentDef.intro(name), url })} />
+      <JsonLd data={webPageJsonLd({
+        name: intentDef.h1(name),
+        description: intentDef.intro(name),
+        url,
+        dateModified: e.publishedAt || undefined,
+        about: { name, region: blName },
+      })} />
       <JsonLd data={faqJsonLd(faqItems)} />
-      <JsonLd data={breadcrumbJsonLd([
-        { name: 'Magazin', url: BASE_URL },
-        { name: 'Singles Regional', url: `${BASE_URL}/singles-regional` },
-        { name: 'Deutschland', url: `${BASE_URL}/singles-regional/staedte` },
-        { name: blName, url: `${BASE_URL}/singles-regional/staedte/${bundesland}` },
-        { name, url: `${BASE_URL}${cityBase}` },
-        { name: intentDef.menuLabel, url },
-      ])} />
+      {/* BreadcrumbList wird allein von der <Breadcrumbs>-Komponente emittiert (kein Duplikat) */}
 
       <CityIntentNav cityBase={cityBase} stadtName={name} activeSlug={intent} />
 

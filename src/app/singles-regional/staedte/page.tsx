@@ -5,7 +5,7 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { JsonLd, collectionPageJsonLd, breadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { JsonLd, collectionPageJsonLd } from '@/components/seo/JsonLd';
 import { BUNDESLAENDER, BUNDESLAND_SLUGS } from '@/lib/bundeslaender';
 
 const PILLAR_URL = 'https://jobsingles.de/magazin/singles-regional/staedte';
@@ -50,13 +50,6 @@ export default async function StaedtePillar() {
             url: `${PILLAR_URL}/${s}`,
           })),
         })}
-      />
-      <JsonLd
-        data={breadcrumbJsonLd([
-          { name: 'Magazin', url: 'https://jobsingles.de/magazin' },
-          { name: 'Singles Regional', url: 'https://jobsingles.de/magazin/singles-regional' },
-          { name: 'Städte', url: PILLAR_URL },
-        ])}
       />
 
       <PillarHero

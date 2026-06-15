@@ -61,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de-CH" className={`${roboto.variable} h-full antialiased`}>
+    <html lang="de-DE" className={`${roboto.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-sans">
         <ThemeProvider theme="light">
           <Header />

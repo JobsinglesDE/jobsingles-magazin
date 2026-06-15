@@ -67,7 +67,7 @@ export function articleJsonLd({
         height: 200,
       },
     },
-    inLanguage: 'de-CH',
+    inLanguage: 'de-DE',
   };
 }
 
@@ -189,11 +189,17 @@ export function collectionPageJsonLd({
   description,
   url,
   items,
+  dateModified,
+  about,
 }: {
   name: string;
   description: string;
   url: string;
   items: { name: string; url: string }[];
+  dateModified?: string;
+  /** Ortsbezug der Sammelseite. jobsingles-Städte haben keine Geo-Koordinaten (Zensus-Textdaten),
+   *  daher region/Land statt erfundener lat/lon. */
+  about?: { name: string; region?: string; lat?: number; lon?: number };
 }) {
   return {
     '@context': 'https://schema.org',
@@ -201,7 +207,22 @@ export function collectionPageJsonLd({
     name,
     description,
     url,
-    inLanguage: 'de-CH',
+    inLanguage: 'de-DE',
+    ...(dateModified ? { dateModified } : {}),
+    ...(about
+      ? {
+          about: {
+            '@type': 'City',
+            name: about.name,
+            ...(about.region
+              ? { address: { '@type': 'PostalAddress', addressRegion: about.region, addressCountry: 'DE' } }
+              : {}),
+            ...(typeof about.lat === 'number' && typeof about.lon === 'number'
+              ? { geo: { '@type': 'GeoCoordinates', latitude: about.lat, longitude: about.lon } }
+              : {}),
+          },
+        }
+      : {}),
     isPartOf: {
       '@type': 'WebSite',
       name: 'Jobsingles Magazin',
@@ -216,6 +237,50 @@ export function collectionPageJsonLd({
         name: it.name,
         url: it.url,
       })),
+    },
+  };
+}
+
+/**
+ * WebPage mit Ortsbezug — für Leaf-Landingpages (z.B. Stadt×Intent), die KEINE
+ * Unterseiten-Sammlung sind (also kein CollectionPage/ItemList) und kein Blogartikel.
+ */
+export function webPageJsonLd({
+  name,
+  description,
+  url,
+  dateModified,
+  about,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  dateModified?: string;
+  about?: { name: string; region?: string };
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name,
+    description,
+    url,
+    inLanguage: 'de-DE',
+    ...(dateModified ? { dateModified } : {}),
+    ...(about
+      ? {
+          about: {
+            '@type': 'City',
+            name: about.name,
+            ...(about.region
+              ? { address: { '@type': 'PostalAddress', addressRegion: about.region, addressCountry: 'DE' } }
+              : {}),
+          },
+        }
+      : {}),
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Jobsingles Magazin',
+      url: 'https://jobsingles.de/magazin',
     },
   };
 }

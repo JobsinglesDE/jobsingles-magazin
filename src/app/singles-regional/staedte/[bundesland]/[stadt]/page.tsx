@@ -4,8 +4,9 @@ import { ArticleBody } from '@/components/content/ArticleBody';
 import { FAQAccordion } from '@/components/ui/FAQAccordion';
 import { HeartButton } from '@/components/ui/HeartButton';
 import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
-import { JsonLd, articleJsonLd, faqJsonLd, breadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { JsonLd, faqJsonLd, collectionPageJsonLd } from '@/components/seo/JsonLd';
 import { BUNDESLAENDER, bundeslandName } from '@/lib/bundeslaender';
+import { INTENTS } from '@/lib/intents';
 import { CityIntentNav } from '@/components/staedte/CityIntentNav';
 import { ProfileFeed } from '@/components/staedte/ProfileFeed';
 import { CityGeoLinks } from '@/components/staedte/CityGeoLinks';
@@ -74,15 +75,16 @@ export default async function StadtPage({ params }: { params: Params }) {
 
   return (
     <>
-      <JsonLd data={articleJsonLd({ title: `Singles in ${name}`, description: e.intro || '', url, datePublished: e.publishedAt || undefined })} />
+      <JsonLd data={collectionPageJsonLd({
+        name: `Singles in ${name}`,
+        description: e.intro || `Singles, Dating und Bekanntschaften in ${name} und Umgebung.`,
+        url,
+        dateModified: e.publishedAt || undefined,
+        about: { name, region: blName },
+        items: INTENTS.map((it) => ({ name: it.menuLabel, url: `${url}/${it.slug}` })),
+      })} />
       {e.faqItems && e.faqItems.length > 0 && <JsonLd data={faqJsonLd(e.faqItems)} />}
-      <JsonLd data={breadcrumbJsonLd([
-        { name: 'Magazin', url: BASE_URL },
-        { name: 'Singles Regional', url: `${BASE_URL}/singles-regional` },
-        { name: 'Deutschland', url: `${BASE_URL}/singles-regional/staedte` },
-        { name: blName, url: `${BASE_URL}/singles-regional/staedte/${bundesland}` },
-        { name, url },
-      ])} />
+      {/* BreadcrumbList wird allein von der <Breadcrumbs>-Komponente emittiert (kein Duplikat) */}
 
       <CityIntentNav cityBase={cityBase} stadtName={name} />
 
