@@ -81,9 +81,9 @@ export async function CityFooterLinks({
           </ul>
         </div>
 
-        {/* Partnervermittlung & Casual Dating (Footer-Intents) — wie meinestadt */}
+        {/* Weitere Bekanntschaften & Partnersuche (Footer-Intents) — wie meinestadt */}
         <div>
-          <h3 className="font-bold text-foreground mb-3">Partnervermittlung &amp; Casual Dating</h3>
+          <h3 className="font-bold text-foreground mb-3">Weitere Bekanntschaften &amp; Partnersuche</h3>
           <ul className="space-y-2">
             {FOOTER_INTENTS.map((i) => (
               <li key={i.slug}>
