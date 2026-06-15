@@ -22,7 +22,6 @@ type Spot = {
 
 // Intent-Slug → bevorzugte Kategorien (Reihenfolge = Priorität)
 const INTENT_CATS: Record<string, string[]> = {
-  'casual-dating': ['bar', 'wine_bar', 'pub'],
   seitensprung: ['bar', 'wine_bar', 'pub'],
   'freundschaft-plus': ['bar', 'pub', 'cafe'],
   'partnersuche-50-plus': ['cafe', 'restaurant', 'wine_bar'],

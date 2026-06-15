@@ -172,15 +172,15 @@ export const INTENTS: Intent[] = [
     feed: { gender: 'f', seeking: 'f' },
   },
   {
-    slug: 'casual-dating',
-    menuLabel: 'Casual Dating',
+    slug: 'seitensprung',
+    menuLabel: 'Seitensprung',
     placement: 'tab',
     partner: 'elflirt',
-    h1: (s) => `Casual Dating in ${s}`,
-    seoTitle: (s) => `Casual Dating ${s} | Unverbindliche Dates & Flirts`,
+    h1: (s) => `Seitensprung in ${s}`,
+    seoTitle: (s) => `Seitensprung ${s} | Diskrete Kontakte & Abenteuer`,
     intro: (s) =>
-      `Unverbindliche Dates und prickelnde Flirts in ${s} — ohne Beziehungsdruck, aber mit klaren Absprachen. Elflirt ist die Casual-Dating-Plattform mit Mitgliedern aus deiner Umgebung.`,
-    faq: (s) => kostenlosFaq(s, 'Casual Dates', 'Elflirt'),
+      `Diskrete Kontakte und unverbindliche Abenteuer in ${s} und Umgebung — ohne Namen, ohne Verpflichtungen, mit klaren Regeln. Elflirt ist die Plattform für prickelnde Affären mit Diskretion.`,
+    faq: (s) => kostenlosFaq(s, 'diskrete Kontakte', 'Elflirt'),
     feed: { tag: 'casual' },
   },
   {
@@ -292,18 +292,6 @@ export const INTENTS: Intent[] = [
       `Seriöse Partnersuche in ${s} — ob ab 40, ab 50 oder ab 60: Hier zählt die ernsthafte Beziehung, nicht der schnelle Flirt. Jobsingles vermittelt Menschen, die zueinander passen — über Beruf und Lebensstil.`,
     faq: (s) => kostenlosFaq(s, 'seriöse Partnervermittlung', 'Jobsingles'),
     feed: { minAge: 35 },
-  },
-  {
-    slug: 'seitensprung',
-    menuLabel: 'Seitensprung',
-    placement: 'footer',
-    partner: 'elflirt',
-    h1: (s) => `Seitensprung in ${s}`,
-    seoTitle: (s) => `Seitensprung ${s} | Diskrete Kontakte`,
-    intro: (s) =>
-      `Diskrete Kontakte in ${s} und Umgebung — ohne Namen, ohne Verpflichtungen, mit klaren Regeln. Elflirt ist die Plattform für unverbindliche Abenteuer mit Diskretion.`,
-    faq: (s) => kostenlosFaq(s, 'diskrete Kontakte', 'Elflirt'),
-    feed: { tag: 'casual' },
   },
   {
     slug: 'freundschaft-plus',
