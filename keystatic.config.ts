@@ -253,6 +253,11 @@ export default config({
         einwohner: fields.text({ label: 'Einwohner' }),
         altersstruktur: fields.text({ label: 'Altersstruktur' }),
         geschlechterquote: fields.text({ label: 'Geschlechterquote' }),
+        // Rohe Zahlen für Singles-Index + Dating-Interpretation (quellen-agnostisch, vom Puller gefüllt)
+        ledigeQuote: fields.text({ label: 'Ledigen-Quote % (Kreis)', description: 'z.B. "43,3" — treibt den Singles-Index' }),
+        singlehaushalteQuote: fields.text({ label: 'Einpersonenhaushalte % (Gemeinde)', description: 'z.B. "41,3" — optional, stärkeres Dating-Signal' }),
+        maennerQuote: fields.text({ label: 'Männer-Anteil %', description: 'z.B. "48,5"' }),
+        durchschnittsalter: fields.text({ label: 'Durchschnittsalter (Jahre)', description: 'z.B. "43,6"' }),
         stichtag: fields.text({ label: 'Stichtag', defaultValue: 'Zensus 2022' }),
         prioritaet: fields.select({
           label: 'Priorität (Build-Order)',

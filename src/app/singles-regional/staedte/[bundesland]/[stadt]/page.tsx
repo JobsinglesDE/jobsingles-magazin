@@ -15,6 +15,8 @@ import { CityDateSpots } from '@/components/staedte/CityDateSpots';
 import { CitySearchBox } from '@/components/staedte/CitySearchBox';
 import { WhyJobsingles } from '@/components/staedte/WhyJobsingles';
 import { CityFooterLinks } from '@/components/staedte/CityFooterLinks';
+import { CityDatingInsight } from '@/components/staedte/CityDatingInsight';
+import { CitySources } from '@/components/staedte/CitySources';
 
 const BASE_URL = 'https://jobsingles.de/magazin';
 type Params = Promise<{ bundesland: string; stadt: string }>;
@@ -104,6 +106,9 @@ export default async function StadtPage({ params }: { params: Params }) {
         {/* Zensus-Datenblock — direkt unter dem Hero (unser Vorsprung vs. meinestadt) */}
         <CityStats name={name} e={e} />
 
+        {/* Was bedeutet das fürs Dating — generierter Unique-Text aus den Zahlen */}
+        <CityDatingInsight name={name} kreis={e.kreis || undefined} e={e} />
+
         {/* Warum Jobsingles — 3 USPs (statt Konkurrenz-Logos) */}
         <WhyJobsingles stadtName={name} />
 
@@ -141,6 +146,9 @@ export default async function StadtPage({ params }: { params: Params }) {
         <CityGeoLinks bundesland={bundesland} kreis={e.kreis || undefined} />
 
         <CityFooterLinks name={name} kreis={e.kreis || undefined} currentStadt={stadt} cityBase={cityBase} />
+
+        {/* Alle Quellen gesammelt ganz unten (nofollow) */}
+        <CitySources e={e} kreis={e.kreis || undefined} stichtag={e.stichtag || undefined} />
       </div>
 
       <section className="text-center py-14 px-6">

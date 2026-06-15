@@ -70,50 +70,65 @@ export async function CityDateSpots({
   });
   const pool = ranked.slice(0, 8);
   const offset = pool.length > 0 ? seed % pool.length : 0;
-  const spots = [...pool.slice(offset), ...pool.slice(0, offset)].slice(0, 4);
+  const spots = [...pool.slice(offset), ...pool.slice(0, offset)].slice(0, 3);
+
+  const icon = (a: string) =>
+    a === 'cafe' || a === 'ice_cream' ? '☕' : a === 'restaurant' ? '🍽️' : a === 'biergarten' ? '🍻' : '🍸';
+  const mapsUrl = (s: Spot) =>
+    `https://www.openstreetmap.org/search?query=${encodeURIComponent(`${s.name} ${stadtName}`)}`;
 
   return (
     <section className="my-12">
-      <div className="flex items-baseline justify-between mb-5">
-        <h2 className="text-xl font-bold text-foreground">
-          Orte fürs erste Date in {stadtName}
-        </h2>
-        <span className="text-[11px] text-foreground/40">Quelle: OpenStreetMap</span>
-      </div>
+      <p className="text-[11px] uppercase tracking-widest font-bold text-primary mb-1">Treffpunkte</p>
+      <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground mb-1">
+        {spots.length} Date-Orte in {stadtName}
+      </h2>
+      <p className="text-foreground/60 mb-6 text-sm">
+        Ausgewählte Treffpunkte für ein unkompliziertes erstes Date — kurz inspirieren lassen, Karte öffnen, los.
+      </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
         {spots.map((s, i) => (
           <div
             key={`${s.name}-${i}`}
-            className="flex items-center gap-4 rounded-2xl bg-surface border border-foreground/10 p-4 relative overflow-hidden"
+            className="group relative h-full flex flex-col rounded-2xl bg-surface border border-foreground/10 p-5 overflow-hidden transition-shadow hover:shadow-lg"
           >
-            {/* Kategorie-Marke: goldener Eckakzent */}
-            <div
-              className="absolute -left-6 -top-6 w-12 h-12 rotate-45 bg-secondary/25"
-              aria-hidden
-            />
-            <div className="w-11 h-11 rounded-full grid place-items-center bg-secondary/15 text-lg flex-shrink-0" aria-hidden>
-              {s.amenity === 'cafe' || s.amenity === 'ice_cream' ? '☕' : s.amenity === 'restaurant' ? '🍽️' : s.amenity === 'biergarten' ? '🍻' : '🍸'}
+            {/* große Nummer als Wasserzeichen */}
+            <span className="pointer-events-none absolute -right-2 -top-3 text-7xl font-black text-secondary/10 leading-none select-none">
+              {i + 1}
+            </span>
+
+            <div className="relative flex items-center gap-3 mb-3">
+              <div className="w-12 h-12 rounded-2xl grid place-items-center bg-secondary/15 text-2xl flex-shrink-0" aria-hidden>
+                {icon(s.amenity)}
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <span className="inline-block rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wide px-2.5 py-1">
+                  {s.category}
+                </span>
+                {s.distanceKm > 0 && (
+                  <span className="inline-block rounded-full bg-foreground/5 text-foreground/55 text-[10px] font-semibold px-2.5 py-1">
+                    {s.distanceKm} km vom Zentrum
+                  </span>
+                )}
+              </div>
             </div>
-            <div className="min-w-0">
-              <p className="text-[10px] uppercase tracking-widest font-bold text-foreground/40">
-                {s.category}
-                {s.distanceKm > 0 && <span className="ml-2 normal-case tracking-normal font-semibold text-foreground/50">{s.distanceKm} km vom Zentrum</span>}
-              </p>
-              <p className="font-bold text-foreground truncate">{s.name}</p>
-              {s.address && <p className="text-xs text-foreground/55 truncate">{s.address}</p>}
-            </div>
+
+            <p className="relative font-bold text-foreground text-lg leading-snug">{s.name}</p>
+            {s.address && <p className="relative text-xs text-foreground/55 mt-0.5">{s.address}</p>}
+
+            <a
+              href={mapsUrl(s)}
+              rel="nofollow noopener"
+              target="_blank"
+              className="relative mt-auto pt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:gap-2 transition-all"
+            >
+              Auf Karte öffnen
+              <span aria-hidden>→</span>
+            </a>
           </div>
         ))}
       </div>
-
-      <p className="mt-3 text-[11px] text-foreground/40">
-        Daten:{' '}
-        <a href="https://www.openstreetmap.org/copyright" rel="nofollow noopener" target="_blank" className="underline hover:text-primary">
-          © OpenStreetMap contributors
-        </a>{' '}
-        (ODbL) — Angaben ohne Gewähr.
-      </p>
     </section>
   );
 }

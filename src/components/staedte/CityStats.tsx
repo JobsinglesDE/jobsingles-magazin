@@ -1,10 +1,12 @@
-// Zensus-Datenblock pro Stadt. Einwohner = echt (Gemeinde, Zensus 2022);
-// Singles-Zahl = Hochrechnung auf Basis Kreis-Ledigen-Quote; Geschlecht = echt (Kreis).
-// Durchschnittsalter bewusst NICHT angezeigt (schreckt jüngere Zielgruppe ab).
+// Zensus-Datenblock pro Stadt. Einwohner = echt (Gemeinde); Singles-Zahl = Hochrechnung
+// auf Basis Kreis-Ledigen-Quote; Geschlecht = echt (Kreis). Singles-Index = deterministisch
+// aus Ledigen-/Geschlechter-/Altersdaten berechnet (siehe lib/singles-index.ts).
+// Durchschnittsalter als Karte bewusst NICHT angezeigt (fließt nur in den Index).
 import type { ReactNode } from 'react';
 import { AnimatedGradientBorder } from '@/components/ui/AnimatedGradientBorder';
+import { computeSinglesIndex, type RawCityStats } from '@/lib/singles-index';
 
-type CityFields = {
+type CityFields = RawCityStats & {
   einwohner?: string | null;
   ledigeAnzahl?: string | null;
   geschlechterquote?: string | null; // Format "MM,M / FF,F %" (Männer / Frauen)
@@ -30,21 +32,37 @@ function Card({ children }: { children: ReactNode }) {
 
 export function CityStats({ name, e }: { name: string; e: CityFields }) {
   const g = parseGeschlecht(e.geschlechterquote);
-  if (!e.einwohner && !e.ledigeAnzahl && !g) return null;
+  const idx = computeSinglesIndex(e);
+  if (!e.einwohner && !e.ledigeAnzahl && !g && !idx) return null;
   return (
     <section className="my-12">
       <h2 className="text-2xl sm:text-3xl font-extrabold mb-1">{name} in Zahlen</h2>
       <p className="text-foreground/60 mb-6 text-sm">Amtliche Daten aus dem Zensus 2022 — für deine Region.</p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
-        {/* Singles — Hero-Karte */}
-        {e.ledigeAnzahl && (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+        {/* Singles-Index — Hero-Karte */}
+        {idx && (
           <AnimatedGradientBorder borderRadius={18} borderWidth={2} className="h-full">
             <div className="h-full rounded-2xl bg-primary text-on-primary p-5 text-center flex flex-col justify-center">
-              <div className="text-4xl sm:text-5xl font-extrabold leading-tight">{e.ledigeAnzahl}</div>
-              <div className="mt-1 text-xs uppercase tracking-wide text-on-primary/85">Singles in {name}</div>
+              <div className="text-4xl sm:text-5xl font-extrabold leading-tight">
+                {idx.score}
+                <span className="text-xl sm:text-2xl font-bold text-on-primary/70">/100</span>
+              </div>
+              <div className="mt-1 text-xs uppercase tracking-wide text-on-primary/85">Singles-Index</div>
+              <div className="mt-3 h-1.5 w-full rounded-full bg-on-primary/25 overflow-hidden">
+                <div className="h-full rounded-full bg-on-primary/90" style={{ width: `${idx.score}%` }} />
+              </div>
+              <div className="mt-2 text-[11px] text-on-primary/85">{idx.label}</div>
             </div>
           </AnimatedGradientBorder>
+        )}
+
+        {/* Singles-Zahl */}
+        {e.ledigeAnzahl && (
+          <Card>
+            <div className="text-4xl sm:text-5xl font-extrabold leading-tight text-foreground">{e.ledigeAnzahl}</div>
+            <div className="mt-1 text-xs uppercase tracking-wide text-foreground/50">Singles in {name}</div>
+          </Card>
         )}
 
         {/* Einwohner */}
@@ -72,10 +90,6 @@ export function CityStats({ name, e }: { name: string; e: CityFields }) {
           </Card>
         )}
       </div>
-
-      <p className="mt-3 text-xs text-foreground/60 leading-relaxed">
-        Quelle: {e.stichtag || 'Zensus 2022'}, Statistisches Bundesamt. Die Singles-Zahl ist eine Hochrechnung auf Basis der Ledigen-Quote im {e.kreis || 'Landkreis'} (Familienstand ist amtlich nur bis Kreisebene verfügbar).
-      </p>
     </section>
   );
 }
