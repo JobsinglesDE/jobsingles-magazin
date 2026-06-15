@@ -42,6 +42,7 @@ export default async function StadtBundeslandPage({ params }: { params: Promise<
           name: `Singles ${blName}`,
           description: `Singles und Partnersuche in ${blName}.`,
           url,
+          about: { name: blName, region: blName, type: 'AdministrativeArea' },
           items: inBL.map((a) => ({
             name: a.entry.title,
             url: `https://jobsingles.de/magazin/singles-regional/staedte/${bundesland}/${a.entry.stadt}`,

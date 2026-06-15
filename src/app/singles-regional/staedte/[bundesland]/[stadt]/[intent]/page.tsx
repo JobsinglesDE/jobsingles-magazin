@@ -86,6 +86,7 @@ export default async function IntentPage({ params }: { params: Params }) {
         name: intentDef.h1(name),
         description: intentDef.intro(name),
         url,
+        datePublished: e.publishedAt || undefined,
         dateModified: e.publishedAt || undefined,
         about: { name, region: blName },
       })} />

@@ -189,6 +189,7 @@ export function collectionPageJsonLd({
   description,
   url,
   items,
+  datePublished,
   dateModified,
   about,
 }: {
@@ -196,10 +197,11 @@ export function collectionPageJsonLd({
   description: string;
   url: string;
   items: { name: string; url: string }[];
+  datePublished?: string;
   dateModified?: string;
   /** Ortsbezug der Sammelseite. jobsingles-Städte haben keine Geo-Koordinaten (Zensus-Textdaten),
-   *  daher region/Land statt erfundener lat/lon. */
-  about?: { name: string; region?: string; lat?: number; lon?: number };
+   *  daher region/Land statt erfundener lat/lon. type: 'City' (Stadt) | 'AdministrativeArea' (Bundesland/Kreis). */
+  about?: { name: string; region?: string; type?: 'City' | 'AdministrativeArea'; lat?: number; lon?: number };
 }) {
   return {
     '@context': 'https://schema.org',
@@ -208,11 +210,12 @@ export function collectionPageJsonLd({
     description,
     url,
     inLanguage: 'de-DE',
+    ...(datePublished ? { datePublished } : {}),
     ...(dateModified ? { dateModified } : {}),
     ...(about
       ? {
           about: {
-            '@type': 'City',
+            '@type': about.type ?? 'City',
             name: about.name,
             ...(about.region
               ? { address: { '@type': 'PostalAddress', addressRegion: about.region, addressCountry: 'DE' } }
@@ -225,8 +228,21 @@ export function collectionPageJsonLd({
       : {}),
     isPartOf: {
       '@type': 'WebSite',
+      '@id': 'https://jobsingles.de/magazin/#website',
       name: 'Jobsingles Magazin',
       url: 'https://jobsingles.de/magazin',
+    },
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://jobsingles.de/magazin/#organization',
+      name: 'Jobsingles Magazin',
+      url: 'https://jobsingles.de/magazin',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://jobsingles.de/magazin/logos/jobsingles-logo.png',
+        width: 200,
+        height: 200,
+      },
     },
     mainEntity: {
       '@type': 'ItemList',
@@ -249,12 +265,14 @@ export function webPageJsonLd({
   name,
   description,
   url,
+  datePublished,
   dateModified,
   about,
 }: {
   name: string;
   description: string;
   url: string;
+  datePublished?: string;
   dateModified?: string;
   about?: { name: string; region?: string };
 }) {
@@ -265,6 +283,7 @@ export function webPageJsonLd({
     description,
     url,
     inLanguage: 'de-DE',
+    ...(datePublished ? { datePublished } : {}),
     ...(dateModified ? { dateModified } : {}),
     ...(about
       ? {
@@ -279,8 +298,21 @@ export function webPageJsonLd({
       : {}),
     isPartOf: {
       '@type': 'WebSite',
+      '@id': 'https://jobsingles.de/magazin/#website',
       name: 'Jobsingles Magazin',
       url: 'https://jobsingles.de/magazin',
+    },
+    publisher: {
+      '@type': 'Organization',
+      '@id': 'https://jobsingles.de/magazin/#organization',
+      name: 'Jobsingles Magazin',
+      url: 'https://jobsingles.de/magazin',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://jobsingles.de/magazin/logos/jobsingles-logo.png',
+        width: 200,
+        height: 200,
+      },
     },
   };
 }

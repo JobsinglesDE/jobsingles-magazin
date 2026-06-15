@@ -79,6 +79,7 @@ export default async function StadtPage({ params }: { params: Params }) {
         name: `Singles in ${name}`,
         description: e.intro || `Singles, Dating und Bekanntschaften in ${name} und Umgebung.`,
         url,
+        datePublished: e.publishedAt || undefined,
         dateModified: e.publishedAt || undefined,
         about: { name, region: blName },
         items: INTENTS.map((it) => ({ name: it.menuLabel, url: `${url}/${it.slug}` })),
