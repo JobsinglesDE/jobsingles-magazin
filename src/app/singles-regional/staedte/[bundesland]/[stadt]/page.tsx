@@ -143,18 +143,20 @@ export default async function StadtPage({ params }: { params: Params }) {
           </section>
         )}
 
+        {/* Anmelde-CTA direkt nach der FAQ — der Conversion-Moment */}
+        <section className="mt-10 mb-4 rounded-2xl bg-primary px-6 py-8 text-center text-on-primary">
+          <p className="text-lg sm:text-xl font-bold mb-1">Lerne Singles in {name} kennen</p>
+          <p className="text-on-primary/80 text-sm mb-4">Kostenlos anmelden und Singles aus deiner Region entdecken.</p>
+          <HeartButton href="https://jobsingles.de/?AID=JobsinglesMagazin">Jetzt kostenfrei mitmachen</HeartButton>
+        </section>
+
+        {/* Footer-Bereich: Navigation + alle Quellen gesammelt, nofollow */}
         <CityGeoLinks bundesland={bundesland} kreis={e.kreis || undefined} />
 
         <CityFooterLinks name={name} kreis={e.kreis || undefined} currentStadt={stadt} cityBase={cityBase} />
 
-        {/* Alle Quellen gesammelt ganz unten (nofollow) */}
         <CitySources e={e} kreis={e.kreis || undefined} stichtag={e.stichtag || undefined} />
       </div>
-
-      <section className="text-center py-14 px-6">
-        <p className="text-lg font-bold mb-2">Lerne Singles in {name} kennen</p>
-        <HeartButton href="https://jobsingles.de/?AID=JobsinglesMagazin">Jetzt kostenfrei mitmachen</HeartButton>
-      </section>
     </>
   );
 }
