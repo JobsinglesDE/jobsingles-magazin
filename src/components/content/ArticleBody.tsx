@@ -97,12 +97,15 @@ const markdocConfig = {
         const href = prefixInternalHref(rawHref);
         const attrs: Record<string, string> = { href };
         if (node.attributes.title) attrs.title = node.attributes.title;
-        // External links: nofollow noopener noreferrer + target=_blank
-        // Nur jobsingles.de (eigene Domain) bleibt follow. Alle anderen externen Links —
-        // auch zu Netzwerk-Sites wie jobsingles/seeside aus Content — werden nofollow,
-        // damit Link-Equity nicht inflationär verschenkt wird.
+        // Eigene Domain bleibt follow. Eigenes JS-Netzwerk = dofollow erlaubt (GESETZ #1:
+        // gezielte kontextuelle Cross-Links transferieren Authority im Netz, z.B. Berufe-Portal
+        // ↔ Food-Handwerk). Nur Dritt-Domains werden nofollow, damit Equity nicht verschenkt wird.
         const isExternal = /^https?:\/\//i.test(rawHref) && !/^https?:\/\/(www\.)?jobsingles\.de/i.test(rawHref);
-        if (isExternal) {
+        const isNetwork = /^https?:\/\/(www\.)?(farmersingles\.de|singlebuure\.ch|gastrosingles\.de|handwerksingles\.de|blaulichtsingles\.ch|jobsingles\.de|medicsingles\.de)/i.test(rawHref);
+        if (isNetwork) {
+          attrs.rel = 'noopener';
+          attrs.target = '_blank';
+        } else if (isExternal) {
           attrs.rel = 'nofollow noopener noreferrer';
           attrs.target = '_blank';
         }
