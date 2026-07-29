@@ -48,6 +48,16 @@ function sectionCrumb(_category: string): { label: string; href: string } {
   return { label: 'Singles & Partnersuche', href: `/${SINGLE_HUB.slug}` };
 }
 
+/**
+ * Echte Pressefotos erkennt man am Credit mit Quellenangabe. Sie duerfen NIE als
+ * KI gekennzeichnet werden — das waere selbst irrefuehrend (§ 5 UWG) und entwertet
+ * die Lizenzangabe des Rechteinhabers.
+ */
+function istEchtesFoto(credit?: string | null): boolean {
+  if (!credit) return false;
+  return /Foto:|Wikimedia|CC[- ]BY|GFDL|dpa|Getty|imago|ZDF|RTL|SRF|ARD|MDR|NDR|SWR|SAT\.1|ProSieben|VOX|Joyn|Verlag|Pressefoto|Autorenfoto/i.test(credit);
+}
+
 export async function buildArticleMetadata(slug: string) {
   const article = await reader.collections.articles.read(slug);
   if (!article) return {};
@@ -135,7 +145,7 @@ export default async function ArticleView({ slug }: { slug: string }) {
         date={article.publishedAt || undefined}
         /* News nutzen echte Pressebilder, alles andere ist KI-generiert
            (Art. 50 Abs. 4 KI-VO). */
-        aiGenerated={!article.isNews}
+        aiGenerated={!article.isNews && !istEchtesFoto(article.featuredImageCredit)}
       />
 
       <StickyTOC items={extractH2s(article.content)} />
